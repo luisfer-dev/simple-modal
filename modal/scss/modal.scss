@@ -1,0 +1,164 @@
+$primary-color: #324c70;
+$gray: #f7f7f7;
+$red: #bb2a2a;
+
+.modal-container {
+  display: none;
+  user-select: none;
+
+  .background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    animation-duration: 200ms;
+    background: darken($color: rgba($color: $primary-color, $alpha: 0.8), $amount: 10%);
+
+    .modal {
+      width: 600px;
+      min-height: 200px;
+      background: $gray;
+      position: relative;
+      z-index: 999999;
+      overflow: hidden;
+      animation-duration: 500ms;
+      transition: all 100ms linear;
+      box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
+      .title {
+        border-top: 5px solid $primary-color;
+        border-bottom: 3px solid darken($color: $gray, $amount: 5%);
+        background: white;
+        color: $primary-color;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 1.5rem;
+        font-size: 1.6rem;
+        font-weight: 500;
+        cursor: default;
+
+        animation: border-top-color 2s infinite linear;
+
+        .container-actions {
+          display: flex;
+          align-items: center;
+
+          .fullscreen-modal {
+            transition: color 100ms linear;
+            cursor: pointer;
+
+            &:hover {
+              color: black;
+            }
+          }
+
+          .close-modal {
+            transition: color 100ms linear;
+            cursor: pointer;
+            margin-left: .4rem;
+            &:hover {
+              color: $red;
+            }
+          }
+        }
+      }
+
+      .content {
+        padding: 2rem;
+        color: darken($color: $gray, $amount: 70%);
+        text-align: justify;
+      }
+      
+      .buttons {
+        padding: 2rem;
+        display: flex;
+        justify-content: flex-end;
+        
+        button {
+          border: none;
+          padding: .5rem 2.5rem;
+          cursor: pointer;
+          text-transform: uppercase;
+          border-radius: 4px;
+          font-weight: 900;
+          transition: background 100ms linear;
+          margin-left: .5rem;
+          border-bottom: 3px solid darken($color: $gray, $amount: 20%);
+          background: darken($color: $gray, $amount: 5%);
+          color: darken($color: $gray, $amount: 60%);
+
+          &:hover {
+            background: darken($color: $gray, $amount: 10%);
+          }
+
+          &:active {
+            transform: translateY(1px);
+          }
+
+          &:first-child {
+            margin-left: 0;
+          }
+        }
+
+        .primary-button {
+          border-bottom: 3px solid darken($color: $primary-color, $amount: 20%);
+          background: $primary-color;
+          color: white;
+          &:hover {
+            background: darken($color: $primary-color, $amount: 10%);
+          }
+        }
+
+        .red-button {
+          border-bottom: 3px solid darken($color: $red, $amount: 20%);
+          background: $red;
+          color: white;
+          &:hover {
+            background: darken($color: $red, $amount: 10%);
+          }
+        }
+      }
+    }
+
+    .not-transition {
+      transition: none !important;
+    }
+
+    .fullscreen {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+
+      .title, .buttons {
+        flex: 0;
+      }
+
+      .content {
+        flex: 1;
+      }
+    }
+  }
+}
+
+@keyframes border-top-color {
+  0% {
+    border-top: 5px solid $primary-color;
+  }
+
+  50% {
+    border-top: 5px solid lighten($color: $primary-color, $amount: 15%);
+  }
+
+  100% {
+    border-top: 5px solid $primary-color;
+  }
+}
